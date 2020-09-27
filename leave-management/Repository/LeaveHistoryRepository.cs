@@ -16,26 +16,32 @@ namespace leave_management.Repository
         }
         public bool Create(LeaveHistory entity)
         {
-            _db.leaveHistories.Add(entity);
+            _db.LeaveHistories.Add(entity);
             return Save();
         }
 
         public bool Delete(LeaveHistory entity)
         {
-            _db.leaveHistories.Remove(entity);
+            _db.LeaveHistories.Remove(entity);
             return Save();
         }
 
         public ICollection<LeaveHistory> FindAll()
         {
-            return _db.leaveHistories.ToList();
+            return _db.LeaveHistories.ToList();
         }
 
         public LeaveHistory FindById(int id)
         {
-            var leaveHistory = _db.leaveHistories.Find(id);
+            var leaveHistory = _db.LeaveHistories.Find(id);
             //_db.LeaveTypes.FirstOrDefault();
             return leaveHistory;
+        }
+
+        public bool isExists(int id)
+        {
+            var exists = _db.LeaveHistories.Any(q => q.Id == id);
+            return exists;
         }
 
         public bool Save()
@@ -46,7 +52,7 @@ namespace leave_management.Repository
 
         public bool Update(LeaveHistory entity)
         {
-            _db.leaveHistories.Update(entity);
+            _db.LeaveHistories.Update(entity);
             return Save();
         }
     }

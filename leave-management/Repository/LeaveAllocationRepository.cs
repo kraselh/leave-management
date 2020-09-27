@@ -16,26 +16,32 @@ namespace leave_management.Repository
         }
         public bool Create(LeaveAllocation entity)
         {
-            _db.leaveAllocations.Add(entity);
+            _db.LeaveAllocations.Add(entity);
             return Save();
         }
 
         public bool Delete(LeaveAllocation entity)
         {
-            _db.leaveAllocations.Remove(entity);
+            _db.LeaveAllocations.Remove(entity);
             return Save();
         }
 
         public ICollection<LeaveAllocation> FindAll()
         {
-            return _db.leaveAllocations.ToList();
+            return _db.LeaveAllocations.ToList();
         }
 
         public LeaveAllocation FindById(int id)
         {
-            var leaveAllocation = _db.leaveAllocations.Find(id);
+            var leaveAllocation = _db.LeaveAllocations.Find(id);
             //_db.LeaveTypes.FirstOrDefault();
             return leaveAllocation;
+        }
+
+        public bool isExists(int id)
+        {
+            var exists = _db.LeaveAllocations.Any(q => q.Id == id);
+            return exists;
         }
 
         public bool Save()
@@ -46,7 +52,7 @@ namespace leave_management.Repository
 
         public bool Update(LeaveAllocation entity)
         {
-            _db.leaveAllocations.Update(entity);
+            _db.LeaveAllocations.Update(entity);
             return Save();
         }
     }
